@@ -16,7 +16,7 @@ public class CALCULADORA {
      * @param args the command line arguments
      */
     public static void mensaje() {
-        System.out.println("ESCOJA OPERACION 1(suma), 2(resta),3(multiplicacion),4(division)"); // ESTABLECE LA FUNCIÓN ESCOGE OPERACIÓN .
+        System.out.println("ESCOJA OPERACION 1(suma), 2(resta),3(multiplicacion),4(division),5(cambiar numeros seleccionados)"); // ESTABLECE LA FUNCIÓN ESCOGE OPERACIÓN .
     }
 
     public static double elnumero1() {
@@ -71,10 +71,9 @@ public class CALCULADORA {
         int opcion;
         Scanner leer = new Scanner(System.in);
         // llamamos a las funciones a continuación
-
+        numero1 = elnumero1();
+        numero2 = elnumero2();
         do {
-            numero1 = elnumero1();
-            numero2 = elnumero2();
 
             suma = resultadosumar(numero1, numero2);
             resta = resultadorestar(numero1, numero2);
@@ -102,16 +101,21 @@ public class CALCULADORA {
                 case 4:
                     System.out.println("El resultado de la division es " + division + " y el resto es " + resto);  //definimos caso 4
                     break;
-
+                case 5:
+                    numero1 = elnumero1();
+                    numero2 = elnumero2();
+                    break;
                 default:
                     System.out.println("ERROR ");  //definimos default con mensaje de error
 
             }
-            System.out.println("Quiere hacer otra operacion?? 1 (si) 2 (no)");
-
-            Scanner leer4 = new Scanner(System.in);
-            opcion = leer4.nextInt();     //establece que opcion escogemos
-
+            if (operacion < 5) {
+                System.out.println("Quiere hacer otra operacion?? 1 (si) 2 (no)");
+                Scanner leer4 = new Scanner(System.in);
+                opcion = leer4.nextInt();
+            } else {
+                opcion = 1; // Para que continúe pidiendo operaciones
+            }
         } while (opcion == 1);
     }
 }
